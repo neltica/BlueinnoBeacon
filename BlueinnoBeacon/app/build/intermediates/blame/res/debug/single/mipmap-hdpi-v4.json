@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\nelicia\\Desktop\\gitStorage\\RealBlueinnoBeacon\\BlueinnoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\nelicia\\Desktop\\gitStorage\\RealBlueinnoBeacon\\BlueinnoBeacon\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\nelicia\\Desktop\\BlueinnoBeacon\\BlueinnoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\nelicia\\Desktop\\BlueinnoBeacon\\BlueinnoBeacon\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }
