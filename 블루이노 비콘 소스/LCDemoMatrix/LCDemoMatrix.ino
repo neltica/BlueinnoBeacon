@@ -9,10 +9,10 @@
  pin 10 is connected to LOAD 
  We have only a single MAX72XX.
  */
-LedControl lc=LedControl(2,4,3,1);
+LedControl lc=LedControl(4,5,6,1);
 
 /* we always wait a bit between updates of the display */
-unsigned long delaytime=100;
+unsigned long delaytime=1000;
 
 void setup() {
   /*
@@ -156,11 +156,11 @@ void single() {
 }
 
 void loop() { 
-  //writeArduinoOnMatrix();
+  writeArduinoOnMatrix();
   //rows();
   //columns();
   //single();
-  lc.setLed(0,0,1,true);
+  //lc.setRow(0,1,-1);
 
 
 

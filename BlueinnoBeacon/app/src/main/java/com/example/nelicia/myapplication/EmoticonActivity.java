@@ -1,8 +1,10 @@
 package com.example.nelicia.myapplication;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
@@ -10,6 +12,8 @@ public class EmoticonActivity extends AppCompatActivity {
 
     private LinearLayout[] layer;
     private ToggleButton[] btn;
+    private int emotionNum;
+    private Intent intent;
 
     public EmoticonActivity() {
     }
@@ -43,8 +47,101 @@ public class EmoticonActivity extends AppCompatActivity {
             layer[i/8].addView(btn[i]);
         }
 
+        intent=getIntent();
+
+        int[] arr=intent.getExtras().getIntArray("EMOTICONARRAY");
+        emotionNum=intent.getExtras().getInt("EMOTICONARRAYNUM");
+
+        for(int i=0;i<8;i++)
+        {
+            int unit=128;
+            for(int j=0;j<8;j++)
+            {
+                if((arr[i]&unit)==unit)
+                {
+                    btn[(i*8)+j].setChecked(true);
+                }
+                else
+                {
+                    btn[(i*8)+j].setChecked(false);
+                }
+                unit/=2;
+            }
+        }
 
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.i("backpress", "backpress");
+        int[] emotionArray={getEmoticon(0),getEmoticon(1),getEmoticon(2),getEmoticon(3),getEmoticon(4),getEmoticon(5),getEmoticon(6),getEmoticon(7)};
+        intent=new Intent();
+        intent.putExtra("EMOTICONARRAYNUM", emotionNum);
+        intent.putExtra("EMOTICONRESULT", emotionArray);
+        setResult(RESULT_OK, intent);
+        finish();
+        super.onBackPressed();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("pause", "pause");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("emoticon","resume");
+
+        intent=getIntent();
+
+        int[] arr=intent.getExtras().getIntArray("EMOTICONARRAY");
+        emotionNum=intent.getExtras().getInt("EMOTICONARRAYNUM");
+
+        for(int i=0;i<8;i++)
+        {
+            int unit=128;
+            for(int j=0;j<8;j++)
+            {
+                if((arr[i]&unit)==unit)
+                {
+                    btn[(i*8)+j].setChecked(true);
+                }
+                else
+                {
+                    btn[(i*8)+j].setChecked(false);
+                }
+                unit/=2;
+            }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("onStop", "onStop");
+        //finish();
+    }
+
+    public int getEmoticon(int row)
+    {
+        int result=0;
+        int startIndex=row*8;
+        int unit=128;
+        for(int i=startIndex;i<startIndex+8;i++)
+        {
+            if(btn[i].isChecked())
+            {
+                result+=unit;
+            }
+            unit/=2;
+        }
+        return result;
     }
 }
