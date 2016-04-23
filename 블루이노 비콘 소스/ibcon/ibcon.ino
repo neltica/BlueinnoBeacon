@@ -6,6 +6,7 @@
 //int led = 4;
 int bluetoothTx = 3;  // TX-O pin of bluetooth mate, Arduino D2
 int bluetoothRx = 2;  // RX-I pin of bluetooth mate, Arduino D3
+int buzzerPin = 1;
 SoftwareSerial bluetooth(bluetoothTx, bluetoothRx);
 LedControl lc = LedControl(4, 5, 6, 1);
 
@@ -31,6 +32,8 @@ void setup() {
   lc.shutdown(0, false);
   lc.setIntensity(0, 8);
   lc.clearDisplay(0);
+
+  pinMode(buzzerPin, OUTPUT);
 }
 
 int sendData(String str)
@@ -67,6 +70,7 @@ int sendData(String str)
 void loop() {
   // switch to lower power mode
   //    bluetooth.print("hello");
+  
   if (modFlag == 1)
   {
     if (bluetooth.available())
@@ -115,31 +119,40 @@ void loop() {
       switch (data)
       {
         case 0:
-        for(int i=0;i<8;i++)
-        {
-          lc.setRow(0, i, emoticonArray[0][i]);
-        }
+          for (int i = 0; i < 8; i++)
+          {
+            lc.setRow(0, i, emoticonArray[0][i]);
+          }
           break;
         case 1:
-        for(int i=0;i<8;i++)
-        {
-          lc.setRow(0, i, emoticonArray[1][i]);
-        }
+          for (int i = 0; i < 8; i++)
+          {
+            lc.setRow(0, i, emoticonArray[1][i]);
+          }
           break;
         case 2:
-        for(int i=0;i<8;i++)
-        {
-          lc.setRow(0, i, emoticonArray[2][i]);
-        }
+          for (int i = 0; i < 8; i++)
+          {
+            lc.setRow(0, i, emoticonArray[2][i]);
+          }
           break;
         default:
-        for(int i=0;i<8;i++)
-        {
-          lc.setRow(0, i, false);
-        }
-        break;
+          for (int i = 0; i < 8; i++)
+          {
+            lc.setRow(0, i, false);
+          }
+          break;
       }
     }
+  }
+  else if(modFlag==4)
+  {
+    analogWrite(buzzerPin, 64);           // PWM 25% 적용
+    delay(1000);                       // 1초 대기
+    analogWrite(buzzerPin, 128);          // PWM 50% 적용
+    delay(1000);                       // 1초 대기
+    analogWrite(buzzerPin, 256);           // PWM 100% 적용
+    delay(1000);                       // 1초 대기
   }
 
 
