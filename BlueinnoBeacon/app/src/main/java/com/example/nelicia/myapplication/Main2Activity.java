@@ -60,6 +60,8 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
     private boolean startFlag=false;
 
+    private int postOutput;
+
     private int recvData,recvCount,sendCount;
 
 
@@ -72,6 +74,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         recvData=-129;
         recvCount=0;
         sendCount=0;
+        postOutput=-1;
         emoticonArray=new int[3][8];
         fileName="setting.txt";
         if(new File(getFilesDir(),fileName).exists()==true)
@@ -245,6 +248,8 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
                 startActivityForResult(emoticonIntent, EMOTIONRESULTCODE);
                 break;
             case R.id.meter:
+                mBluetoothGatt.close();
+                beaconManager.unbind(this);
                 startActivity(graphIntent);
                 break;
         }
@@ -263,27 +268,48 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
                     if(startFlag) {
                         if(collection.iterator().next().getDistance()>=1.0)
                         {
-                            Log.i("sendData", String.valueOf(2));
-                            for (BluetoothGattService service : services) {
-                                service.getCharacteristics().get(0).setValue(2,BluetoothGattCharacteristic.FORMAT_SINT8,0);
-                                mBluetoothGatt.writeCharacteristic(service.getCharacteristics().get(0));
+
+                            if(postOutput!=2) {
+                                Log.i("sendData", String.valueOf(2)+" "+collection.iterator().next().getDistance());
+                                    for (BluetoothGattService service : services) {
+                                        service.getCharacteristics().get(0).setValue(2, BluetoothGattCharacteristic.FORMAT_SINT8, 0);
+                                        mBluetoothGatt.writeCharacteristic(service.getCharacteristics().get(0));
+                                    }
+
+                                postOutput=2;
                             }
                         }
                         else if(collection.iterator().next().getDistance()>=0.6)
                         {
-                            Log.i("sendData", String.valueOf(1));
-                            for (BluetoothGattService service : services) {
-                                service.getCharacteristics().get(0).setValue(1,BluetoothGattCharacteristic.FORMAT_SINT8,0);
-                                mBluetoothGatt.writeCharacteristic(service.getCharacteristics().get(0));
+
+                            if(postOutput!=1)
+                            {
+                                Log.i("sendData", String.valueOf(1)+" "+collection.iterator().next().getDistance());
+                                    for (BluetoothGattService service : services) {
+                                        service.getCharacteristics().get(0).setValue(1,BluetoothGattCharacteristic.FORMAT_SINT8,0);
+                                        mBluetoothGatt.writeCharacteristic(service.getCharacteristics().get(0));
+                                    }
+
+                                postOutput=1;
                             }
+
                         }
                         else if(collection.iterator().next().getDistance()>=0.3)
                         {
-                            Log.i("sendData", String.valueOf(0));
-                            for (BluetoothGattService service : services) {
-                                service.getCharacteristics().get(0).setValue(0,BluetoothGattCharacteristic.FORMAT_SINT8,0);
-                                mBluetoothGatt.writeCharacteristic(service.getCharacteristics().get(0));
+
+                            if(postOutput!=0)
+                            {
+                                Log.i("sendData", String.valueOf(0)+" "+collection.iterator().next().getDistance());
+
+                                    for (BluetoothGattService service : services) {
+                                    service.getCharacteristics().get(0).setValue(0,BluetoothGattCharacteristic.FORMAT_SINT8,0);
+                                    mBluetoothGatt.writeCharacteristic(service.getCharacteristics().get(0));
+                                    }
+
+
+                                postOutput=0;
                             }
+
                         }
                         else
                         {
@@ -392,6 +418,17 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mBluetoothGatt=BLEDataClass.mBluetoothDevice.connectGatt(this,false,mGattCallback);
+        beaconManager= BeaconManager.getInstanceForApplication(this);
+        beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=aabb,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+        beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+        beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
+        beaconManager.bind(this);
+    }
 
 
 }

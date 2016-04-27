@@ -15,6 +15,8 @@ int recvCount = 0;
 int emoticonArray[3][8];
 int i = 0, j = 0;
 
+int postInput = -1;
+
 void setup() {
   // led used to indicate that iBeacon has started
   //pinMode(led, OUTPUT);
@@ -36,41 +38,11 @@ void setup() {
   pinMode(buzzerPin, OUTPUT);
 }
 
-int sendData(String str)
-{
-  int sendNum = 0;
-  String recv;
-  while (true)
-  {
-    bluetooth.flush();
-    sendNum = bluetooth.print(str);
-    if (bluetooth.available())
-    {
-      recv = String(bluetooth.read());
-      int count = 0;
-      for (int i = 0; i < recv.length() - 1; i++)
-      {
-        if (48 > recv[i] || recv[i] > 57)
-        {
-          count++;
-        }
-      }
-      if (count == 0)
-      {
-        break;
-      }
-    }
-    delay(500);
-
-  }
-  return atoi(recv.c_str());
-
-}
 
 void loop() {
   // switch to lower power mode
   //    bluetooth.print("hello");
-  
+
   if (modFlag == 1)
   {
     if (bluetooth.available())
@@ -89,7 +61,7 @@ void loop() {
           if (i == 3)
           {
             i = 0;
-            modFlag = 3;
+            modFlag = 2;
             Serial.println("mode2 start");
           }
         }
@@ -100,70 +72,53 @@ void loop() {
   }
   else if (modFlag == 2)
   {
-    for (int i = 0; i < 3; i++)
-    {
-      for (int j = 0; j < 8; j++)
-      {
-        lc.setRow(0, j, emoticonArray[i][j]);
-      }
-      delay(1000);
-    }
-
-  }
-  else if (modFlag == 3)
-  {
+    Serial.println(postInput);
     if (bluetooth.available())
     {
       int data = (int)bluetooth.read();
       Serial.println(data);
-      switch (data)
+      if (data != postInput)
       {
-        case 0:
-          for (int i = 0; i < 8; i++)
-          {
-            lc.setRow(0, i, emoticonArray[0][i]);
-          }
-          break;
-        case 1:
-          for (int i = 0; i < 8; i++)
-          {
-            lc.setRow(0, i, emoticonArray[1][i]);
-          }
-          break;
-        case 2:
-          for (int i = 0; i < 8; i++)
-          {
-            lc.setRow(0, i, emoticonArray[2][i]);
-          }
-          break;
-        default:
-          for (int i = 0; i < 8; i++)
-          {
-            lc.setRow(0, i, false);
-          }
-          break;
+        switch (data)
+        {
+          case 0:
+            for (int i = 0; i < 8; i++)
+            {
+              lc.setRow(0, i, emoticonArray[0][i]);
+            }
+            break;
+          case 1:
+            for (int i = 0; i < 8; i++)
+            {
+              lc.setRow(0, i, emoticonArray[1][i]);
+            }
+            break;
+          case 2:
+            for (int i = 0; i < 8; i++)
+            {
+              lc.setRow(0, i, emoticonArray[2][i]);
+            }
+            break;
+          case 4:
+            for (int i = 0; i < 8; i++)
+            {
+              lc.setRow(0, i, false);
+            }
+            break;
+        }
       }
+      postInput = data;
+    }
+    if (postInput == 2)
+    {
+      analogWrite(buzzerPin, HIGH);           // PWM 100% 적용
+    }
+    else
+    {
+      analogWrite(buzzerPin, LOW);           // PWM 100% 적용
     }
   }
-  else if(modFlag==4)
-  {
-    analogWrite(buzzerPin, 64);           // PWM 25% 적용
-    delay(1000);                       // 1초 대기
-    analogWrite(buzzerPin, 128);          // PWM 50% 적용
-    delay(1000);                       // 1초 대기
-    analogWrite(buzzerPin, 256);           // PWM 100% 적용
-    delay(1000);                       // 1초 대기
-  }
 
-
-}
-
-void setLED(int emoNum)
-{
-  for (int i = 0; i < 8; i++)
-  {
-    lc.setRow(0, i, emoticonArray[emoNum][i]);
-  }
 }
 void RFduinoBLE_onReceive()
 {
