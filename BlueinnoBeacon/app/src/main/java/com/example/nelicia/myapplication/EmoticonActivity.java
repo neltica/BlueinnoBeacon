@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
@@ -39,9 +40,23 @@ public class EmoticonActivity extends AppCompatActivity {
         for (int i=0;i<64;i++)
         {
             btn[i]=new ToggleButton(this);
-            btn[i].setText(String.valueOf(i));
-            btn[i].setTextOn(String.valueOf(i));
-            btn[i].setTextOff(String.valueOf(i));
+            btn[i].setBackgroundDrawable(getResources().getDrawable(R.drawable.unchecked));
+            btn[i].setTextOn("");
+            btn[i].setTextOff("");
+            final int finalI = i;
+            btn[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked)
+                    {
+                        btn[finalI].setBackgroundDrawable(getResources().getDrawable(R.drawable.checked));
+                    }
+                    else
+                    {
+                        btn[finalI].setBackgroundDrawable(getResources().getDrawable(R.drawable.unchecked));
+                    }
+                }
+            });
             btn[i].setLayoutParams(new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT, (float) 0.125));
 
             layer[i/8].addView(btn[i]);
