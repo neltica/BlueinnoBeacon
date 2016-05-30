@@ -42,10 +42,10 @@
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 57,
+                        "startOffset": 55,
                         "endLine": 6,
                         "endColumn": 13,
-                        "endOffset": 333
+                        "endOffset": 327
                     }
                 }
             }

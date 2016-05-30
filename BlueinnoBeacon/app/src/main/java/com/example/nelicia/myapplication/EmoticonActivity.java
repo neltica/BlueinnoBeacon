@@ -83,10 +83,6 @@ public class EmoticonActivity extends AppCompatActivity {
                 unit/=2;
             }
         }
-
-
-
-
     }
 
     @Override

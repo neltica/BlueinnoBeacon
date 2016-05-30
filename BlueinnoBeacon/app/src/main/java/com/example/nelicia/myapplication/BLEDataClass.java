@@ -7,5 +7,5 @@ import android.bluetooth.BluetoothDevice;
  */
 public class BLEDataClass {
 
-    static public BluetoothDevice mBluetoothDevice;
+    static public BluetoothDevice mBluetoothDevice;        //전역으로 만들어서 어느 클래스에서든지 같은 값을 쓸 수 있도록 함.
 }

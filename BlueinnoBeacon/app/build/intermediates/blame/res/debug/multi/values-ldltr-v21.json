@@ -39,9 +39,9 @@
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 57,
+                        "startOffset": 55,
                         "endColumn": 112,
-                        "endOffset": 165
+                        "endOffset": 163
                     }
                 }
             }
