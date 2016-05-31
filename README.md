@@ -4,7 +4,6 @@
 >블루이노에 BLE모듈(HM-10)을 추가로 연결하여 블루이노와 스마트폰 사이의 거리를 확인하고 블루이노에 연결된 도트 메트릭스를 이용해서 거리에 따라 이모티콘을 변경하는 외주 프로젝트
 
 ##TODO List
-
 - [x] 도트메트릭스 동작 확인
 - [x] 비콘 동작확인 (앱은 앱스토어에서 다운받아 테스트)
 - [x] 앱 레이아웃 및 기초 작업 진행
@@ -18,7 +17,6 @@
 - [x] 그래프 표현 (HzGrapher Library)
 
 ##The goal
-
 >* 블루이노 비콘모드로 동작
 >* 안드로이드에서 비콘거리 수신
 >* 안드로이드에서 비콘거리 그래프로 표현
@@ -33,17 +31,22 @@
 >* HM-10 (BLE)
 
 ##Develop Tool
-
 >* Android studio
 >* Arduino IDE v1.5.8 <-해당 버전이 블루이노가 가장 잘 동작함.(공식카페 글 참조)
 
 ##Library
-
 >* HzGrapher library (그래프 라이브러리)
 >* Bluinno library  (블루이노 라이브러리)
 >* LedControl  (도트메트릭스 사용을 위한 LED 라이브러리)
 
+
+##Implementation
+###8X8 Dot Matrix Layout
+
 ##Link
+>* Blueinno library download:
+>* LedControl library download:
+>* HzGrapher library download:
 
 
 
