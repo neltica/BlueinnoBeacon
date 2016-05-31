@@ -35,11 +35,15 @@
 ##Develop Tool
 
 >* Android studio
->* Arduino IDE
+>* Arduino IDE v1.5.8 <-해당 버전이 블루이노가 가장 잘 동작함.(공식카페 글 참조)
 
 ##Library
 
 >* HzGrapher library (그래프 라이브러리)
 >* Bluinno library  (블루이노 라이브러리)
->* LedControl  (도트메트릭스 라이브러리)
+>* LedControl  (도트메트릭스 사용을 위한 LED 라이브러리)
+
+##Link
+
+
 
