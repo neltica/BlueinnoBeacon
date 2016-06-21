@@ -45,8 +45,8 @@
 
 ##Link
 >* Blueinno library download:  http://cafe.naver.com/arduinoplusble/859
->* LedControl library download:
->* HzGrapher library download:
+>* LedControl library download: http://playground.arduino.cc/Main/LedControl
+>* HzGrapher library download: https://github.com/handstudio/HzGrapher
 
 
 
