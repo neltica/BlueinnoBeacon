@@ -26,7 +26,7 @@
 
 ##Environment
 >* Android
->* Bluinno
+>* Bluinno2
 >* 8X8 Dot Matrix
 >* HM-10 (BLE)
 
@@ -44,7 +44,7 @@
 ###8X8 Dot Matrix Layout
 
 ##Link
->* Blueinno library download:
+>* Blueinno library download:  http://cafe.naver.com/arduinoplusble
 >* LedControl library download:
 >* HzGrapher library download:
 
