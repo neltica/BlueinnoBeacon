@@ -44,7 +44,7 @@
 ###8X8 Dot Matrix Layout
 
 ##Link
->* Blueinno library download:  http://cafe.naver.com/arduinoplusble
+>* Blueinno library download:  http://cafe.naver.com/arduinoplusble/859
 >* LedControl library download:
 >* HzGrapher library download:
 
