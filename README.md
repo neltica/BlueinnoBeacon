@@ -27,7 +27,7 @@
 ##Environment
 >* Android
 >* Bluinno2
->* 8X8 Dot Matrix
+>* MAX7219 (8X8 Dot Matrix)
 >* HM-10 (BLE)
 
 ##Develop Tool
@@ -41,7 +41,7 @@
 
 
 ##Implementation
-###8X8 Dot Matrix Layout
+###하드웨어 회로구성
 
 ##Link
 >* Blueinno library download:  http://cafe.naver.com/arduinoplusble/859
