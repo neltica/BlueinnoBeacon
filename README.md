@@ -42,7 +42,7 @@
 
 ##Implementation
 ###하드웨어 회로구성
-![total layout](https://github.com/neltica/ArduinoWiFiShieldAndroidSocket/blob/master/Readme_image/%ED%9A%8C%EB%A1%9C%EB%8F%84.jpg)
+![total layout](https://github.com/neltica/RealBlueinnoBeacon/blob/master/total%20layout.png)
 
 ##Link
 >* Blueinno library download:  http://cafe.naver.com/arduinoplusble/859
