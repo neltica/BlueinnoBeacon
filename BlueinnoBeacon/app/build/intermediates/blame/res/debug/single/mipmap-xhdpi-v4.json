@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\nelicia\\Desktop\\BlueinnoBeacon\\BlueinnoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\nelicia\\Desktop\\BlueinnoBeacon\\BlueinnoBeacon\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\nelicia\\Desktop\\gitStorage\\RealBlueinnoBeacon\\BlueinnoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\nelicia\\Desktop\\gitStorage\\RealBlueinnoBeacon\\BlueinnoBeacon\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\nelicia\\Desktop\\BlueinnoBeacon\\BlueinnoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\nelicia\\Desktop\\BlueinnoBeacon\\BlueinnoBeacon\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\nelicia\\Desktop\\RealBlueinnoBeacon\\BlueinnoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
