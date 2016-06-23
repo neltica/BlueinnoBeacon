@@ -42,12 +42,9 @@
 
 ##Implementation
 ###하드웨어 회로구성
-![total layout](https://github.com/neltica/RealBlueinnoBeacon/blob/master/total%20layout.png)
+![total layout](/README_Image/total%20layout.png)
 
 ##Link
 >* Blueinno library download:  http://cafe.naver.com/arduinoplusble/859
 >* LedControl library download: http://playground.arduino.cc/Main/LedControl
 >* HzGrapher library download: https://github.com/handstudio/HzGrapher
-
-
-
